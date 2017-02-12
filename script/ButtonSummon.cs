@@ -26,7 +26,7 @@ public class ButtonSummon : MonoBehaviour {
 	{
 		m_strCharaName = _strCharaName;
 		m_iCost = _iCost;
-		Sprite spr = SpriteManager.Instance.LoadSprite(string.Format("icon/{0}_icon", m_strCharaName));
+		Sprite spr = SpriteManager.Instance.LoadSprite(string.Format("texture/icon/{0}_icon", m_strCharaName));
 		m_imgIcon.sprite = spr;
 	}
 

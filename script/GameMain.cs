@@ -14,11 +14,11 @@ public class GameMain : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		m_btnSummonList[0].Initialize("alice",5);
-		m_btnSummonList[1].Initialize("mister",10);
-		m_btnSummonList[2].Initialize("", 0);
-		m_btnSummonList[3].Initialize("", 0);
-		m_btnSummonList[4].Initialize("", 0);
+		m_btnSummonList[0].Initialize("ch010",5);
+		m_btnSummonList[1].Initialize("ch020",10);
+		m_btnSummonList[2].Initialize("ch030", 5);
+		m_btnSummonList[3].Initialize("ch040", 5);
+		m_btnSummonList[4].Initialize("ch050", 5);
 		foreach( ButtonSummon btnSummon in m_btnSummonList)
 		{
 			btnSummon.OnCreateRequest.AddListener(createChara);
@@ -33,7 +33,8 @@ public class GameMain : MonoBehaviour {
 	private void createChara( string _strName , int _iCost)
 	{
 		//Debug.LogError(string.Format("name:{0} const:{1}", _strName, _iCost));
-		string prefabName = string.Format("prefab/chara");
+		string prefabName = string.Format( "prefab/chara/{0}", _strName );
+		//Debug.Log(string.Format("prefabname:{0}", prefabName));
 
 		if (_strName.Equals("alice"))
 		{
@@ -62,6 +63,7 @@ public class GameMain : MonoBehaviour {
 		else
 		{
 			CharaControl charaControl = PrefabManager.Instance.MakeScript<CharaControl>(prefabName, m_goHomeMine);
+			//Debug.Log(charaControl);
 			charaControl.gameObject.transform.localPosition = Vector3.zero;
 			charaControl.gameObject.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
 

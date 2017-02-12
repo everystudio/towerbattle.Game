@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Animator))]
 public class CharaControl : MonoBehaviour {
 
 	public Vector3 m_vec3Dir;
 	public GameObject m_goTarget;
 
-	public Animator animator;
+	private Animator animator;
 
 	public float m_fSpeed;
 
@@ -14,6 +15,13 @@ public class CharaControl : MonoBehaviour {
 
 	public void Init(string _strName, GameObject _goTarget )
 	{
+		animator = gameObject.GetComponent<Animator>();
+		string strAnimator = "";
+		if( DataManager.Instance.GetAnimatorName(_strName, out strAnimator))
+		{
+			animator.runtimeAnimatorController = (RuntimeAnimatorController)Instantiate(Resources.Load(strAnimator));
+		}
+
 		//animWalk.Init(_strName);
 		transform.localPosition = new Vector3(
 			transform.localPosition.x,
@@ -21,6 +29,7 @@ public class CharaControl : MonoBehaviour {
 			transform.localPosition.z - 1.0f
 			);
 		m_goTarget = _goTarget;
+
 		animator.SetBool("Idle", false);
 		animator.SetBool("Walk", true);
 
