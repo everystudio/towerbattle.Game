@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class CharaControl : MonoBehaviour {
 
+	public int m_iTeamId;
+
 	public Vector3 m_vec3Dir;
 	public GameObject m_goTarget;
 
@@ -12,6 +14,12 @@ public class CharaControl : MonoBehaviour {
 	public float m_fSpeed;
 
 	public float m_fTimer;
+
+	public void Init( int _iTreamId , string _strName, GameObject _goTarget)
+	{
+		m_iTeamId = _iTreamId;
+		Init(_strName, _goTarget);
+	}
 
 	public void Init(string _strName, GameObject _goTarget )
 	{
@@ -57,5 +65,19 @@ public class CharaControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		gameObject.transform.localPosition = gameObject.transform.localPosition + (m_vec3Dir * m_fSpeed);
+
+
+		AnimatorStateInfo state = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+		if (state.fullPathHash == Animator.StringToHash("Base Layer.Walk"))
+		{
+			//Debug.LogError("itti");
+		}
+		else {
+			//Debug.Log(string.Format("not:{0}", state.fullPathHash));
+		}
+
+		AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
+		Debug.Log("アニメーションクリップ名 : " + clipInfo.clip.name);
+
 	}
 }

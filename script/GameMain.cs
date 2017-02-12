@@ -36,41 +36,13 @@ public class GameMain : MonoBehaviour {
 		string prefabName = string.Format( "prefab/chara/{0}", _strName );
 		//Debug.Log(string.Format("prefabname:{0}", prefabName));
 
-		if (_strName.Equals("alice"))
-		{
-			GameObject prefab = Resources.Load<GameObject>(prefabName);
+		CharaControl charaControl = PrefabManager.Instance.MakeScript<CharaControl>(prefabName, m_goHomeMine);
+		//Debug.Log(charaControl);
+		charaControl.gameObject.transform.localPosition = Vector3.zero;
+		charaControl.gameObject.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
 
-			Vector3 pos = Vector3.zero;
-			Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-
-			//if (m_goHomeMine != null)
-			{
-				pos = m_goHomeMine.transform.localPosition;
-				rot = m_goHomeMine.transform.rotation;
-			}
-			GameObject obj = Instantiate(prefab, pos, rot) as GameObject;
-			obj.transform.parent = m_goHomeMine.transform;
-			obj.transform.localPosition = Vector3.zero;
-			obj.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-			obj.transform.parent = Root.transform;
-
-			CharaControl charaControl = obj.GetComponent<CharaControl>();
-			/*
-			*/
-			//CharaControl charaControl = PrefabManager.Instance.MakeScript<CharaControl>(prefabName, m_goHomeMine);
-			charaControl.Init(_strName, m_goHomeEnemy);
-		}
-		else
-		{
-			CharaControl charaControl = PrefabManager.Instance.MakeScript<CharaControl>(prefabName, m_goHomeMine);
-			//Debug.Log(charaControl);
-			charaControl.gameObject.transform.localPosition = Vector3.zero;
-			charaControl.gameObject.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-
-			charaControl.gameObject.transform.parent = Root.transform;
-			charaControl.Init(_strName, m_goHomeEnemy);
-
-		}
+		charaControl.gameObject.transform.parent = Root.transform;
+		charaControl.Init(_strName, m_goHomeEnemy);
 
 	}
 }
