@@ -76,8 +76,8 @@ public class CharaControl : MonoBehaviour {
 			//Debug.Log(string.Format("not:{0}", state.fullPathHash));
 		}
 
-		AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
-		Debug.Log("アニメーションクリップ名 : " + clipInfo.clip.name);
+		//AnimatorClipInfo clipInfo = animator.GetCurrentAnimatorClipInfo(0)[0];
+		//Debug.Log("アニメーションクリップ名 : " + clipInfo.clip.name);
 
 	}
 }
