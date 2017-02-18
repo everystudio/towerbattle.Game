@@ -16,11 +16,14 @@ public class CharaGenerator : MonoBehaviour {
 	[SerializeField]
 	private GameObject m_goTarget;
 
+	[SerializeField]
+	private GameObject m_goRootLifeGauge;
+
 	void Awake()
 	{
 		m_iIndex = 101;
 		dummyGenerate();
-		Invoke("dummyGenerate", 5.0f);
+		//Invoke("dummyGenerate", 5.0f);
 	}
 
 
@@ -40,6 +43,15 @@ public class CharaGenerator : MonoBehaviour {
 
 	private void createChara(string _strName, int _iCost)
 	{
+		CharaControl charaControl = PrefabManager.Instance.AddGameObject<CharaControl>(m_goHome);
+
+		//string prefabName = string.Format("prefab/chara/{0}", _strName);
+		charaControl.gameObject.transform.parent = m_goRoot.transform;
+		charaControl.Init(1, _strName, m_goTarget, m_goRootLifeGauge);
+
+
+		/*
+
 		//Debug.LogError(string.Format("name:{0} const:{1}", _strName, _iCost));
 		string prefabName = string.Format("prefab/chara/{0}", _strName);
 		//Debug.Log(string.Format("prefabname:{0}", prefabName));
@@ -51,6 +63,7 @@ public class CharaGenerator : MonoBehaviour {
 
 		charaControl.gameObject.transform.parent = m_goRoot.transform;
 		charaControl.Init(_strName, m_goTarget);
+		*/
 
 	}
 

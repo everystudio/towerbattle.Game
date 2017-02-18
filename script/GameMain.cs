@@ -8,6 +8,8 @@ public class GameMain : MonoBehaviour {
 
 	public GameObject m_goHomeMine;
 	public GameObject m_goHomeEnemy;
+	[SerializeField]
+	private GameObject m_goRootLifeGauge;
 
 	public List<ButtonSummon> m_btnSummonList = new List<ButtonSummon>();
 
@@ -32,17 +34,11 @@ public class GameMain : MonoBehaviour {
 
 	private void createChara( string _strName , int _iCost)
 	{
-		//Debug.LogError(string.Format("name:{0} const:{1}", _strName, _iCost));
-		string prefabName = string.Format( "prefab/chara/{0}", _strName );
-		//Debug.Log(string.Format("prefabname:{0}", prefabName));
-
-		CharaControl charaControl = PrefabManager.Instance.MakeScript<CharaControl>(prefabName, m_goHomeMine);
-		//Debug.Log(charaControl);
-		charaControl.gameObject.transform.localPosition = Vector3.zero;
-		charaControl.gameObject.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+		CharaControl charaControl = PrefabManager.Instance.AddGameObject<CharaControl>(m_goHomeMine);
 
 		charaControl.gameObject.transform.parent = Root.transform;
-		charaControl.Init(_strName, m_goHomeEnemy);
+
+		charaControl.Init(0,_strName, m_goHomeEnemy, m_goRootLifeGauge);
 
 	}
 }

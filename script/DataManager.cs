@@ -47,7 +47,7 @@ public class DataManager : DataManagerBase<DataManager>{
 		AnimatorDict.Add("ch017", "Animator/SampleAnimatorBomb");
 		AnimatorDict.Add("ch018", "Animator/SampleAnimatorBomb");
 		AnimatorDict.Add("ch019", "Animator/SampleAnimatorWizard");
-		AnimatorDict.Add("ch020", "Animator/SampleAnimatorWizard");
+		AnimatorDict.Add("ch020", "Animator/SimpleAnimator");//SampleAnimatorWizard
 		AnimatorDict.Add("ch021", "Animator/SampleAnimatorWizard");
 		AnimatorDict.Add("ch022", "Animator/SampleAnimatorWizard");
 		AnimatorDict.Add("ch023", "Animator/SampleAnimatorWizard");
